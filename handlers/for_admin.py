@@ -3,6 +3,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import types, Dispatcher
 from data_base.sqlite_db import sql_add_data
 from data_for_the_bot import bot_aiogram
+from buttons.buttons_for_admin import buttons_admin
 
 ID = None
 
