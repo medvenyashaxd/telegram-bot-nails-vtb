@@ -25,7 +25,7 @@ async def send_location(message: types.Message):
 
 
 async def send_instagram(message: types.Message):
-    await message.reply('https://www.instagram.com/val_ensya/')
+    await message.reply(f'Посмотреть работы в instagram:\nhttps://www.instagram.com/val_ensya/')
 
 
 def register_handler_client(dp: Dispatcher):
