@@ -17,3 +17,4 @@ async def command_start(message: types.Message):
 
 def register_handler_client(dp: Dispatcher):
     dp.register_message_handler(command_start, commands=['start', 'help'])
+

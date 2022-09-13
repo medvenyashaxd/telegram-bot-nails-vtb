@@ -9,3 +9,4 @@ async def show_launch_notification(_):
 for_client.register_handler_client(dp)
 
 executor.start_polling(dp, skip_updates=True, on_startup=show_launch_notification)
+
