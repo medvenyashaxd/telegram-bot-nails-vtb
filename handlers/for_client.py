@@ -1,4 +1,6 @@
 from aiogram import types, Dispatcher
+
+from buttons.buttons_for_client import client_button
 from data_for_the_bot import bot_aiogram
 
 
@@ -7,7 +9,8 @@ async def command_start(message: types.Message):
         await bot_aiogram.send_message(message.from_user.id,
 
 'Здравствуй, {0.first_name}. Хочешь записаться на маникюр или педикюр? Чтобы узнать свободное время мастера,\
- напиши в личные сообщения https://t.me/medvenyashaxd или позвони по номеру +375336483246'.format(message.from_user))
+ напиши в личные сообщения https://t.me/medvenyashaxd или позвони по номеру +375336483246'.format(message.from_user),
+                                       reply_markup=client_button)
 
         await bot_aiogram.send_message(message.from_user.id,
                                        'Узнай дополнительную информацию - жми на кнопки внизу чата ⬇')
