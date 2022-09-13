@@ -7,3 +7,4 @@ async def show_launch_notification(_):
 
 
 executor.start_polling(dp, skip_updates=True, on_startup=show_launch_notification)
+
