@@ -1,7 +1,7 @@
 from aiogram import types, Dispatcher
-
 from buttons.buttons_for_client import client_button
 from data_for_the_bot import bot_aiogram
+from data_base import sqlite_db
 
 
 async def command_start(message: types.Message):
@@ -28,7 +28,12 @@ async def send_instagram(message: types.Message):
     await message.reply(f'Посмотреть работы в instagram:\nhttps://www.instagram.com/val_ensya/')
 
 
+async def price(message: types.Message):
+    await sqlite_db.sql_read(message)
+
+
 def registration_handler_client(dp: Dispatcher):
     dp.register_message_handler(command_start, commands=['start', 'help'])
     dp.register_message_handler(send_location, lambda message: '📍 Расположение' in message.text)
     dp.register_message_handler(send_instagram, lambda message: '👀 Посмотреть работы' in message.text)
+    dp.register_message_handler(price, lambda message: '💶 Прайс' in message.text)
