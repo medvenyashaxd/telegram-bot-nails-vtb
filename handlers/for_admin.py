@@ -1,6 +1,7 @@
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import types, Dispatcher
+from data_base.sqlite_db import sql_add_data
 
 
 class FSMAdmin(StatesGroup):
@@ -40,8 +41,7 @@ async def load_price(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['price'] = (message.text + ' BYN')
 
-    async with state.proxy() as data:
-        await message.reply(str(data))
+    await sql_add_data(state)
     await state.finish()
 
 
