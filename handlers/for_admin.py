@@ -45,7 +45,7 @@ async def load_price(message: types.Message, state: FSMContext):
     await state.finish()
 
 
-def register_handlers_admin(dp: Dispatcher):
+def registration_handlers_admin(dp: Dispatcher):
     dp.register_message_handler(loading_command, commands=['Загрузка'], state=None)
     dp.register_message_handler(load_photo, content_types=['photo'], state=FSMAdmin.photo)
     dp.register_message_handler(load_name, state=FSMAdmin.name)

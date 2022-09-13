@@ -28,7 +28,7 @@ async def send_instagram(message: types.Message):
     await message.reply(f'Посмотреть работы в instagram:\nhttps://www.instagram.com/val_ensya/')
 
 
-def register_handler_client(dp: Dispatcher):
+def registration_handler_client(dp: Dispatcher):
     dp.register_message_handler(command_start, commands=['start', 'help'])
     dp.register_message_handler(send_location, lambda message: '📍 Расположение' in message.text)
     dp.register_message_handler(send_instagram, lambda message: '👀 Посмотреть работы' in message.text)
