@@ -1,5 +1,5 @@
 from aiogram import types, Dispatcher
-from buttons.buttons_for_client import client_button
+from buttons.buttons_for_client import client_button, inline_button
 from data_for_the_bot import bot_aiogram
 from data_base import sqlite_db
 
@@ -25,7 +25,7 @@ async def send_location(message: types.Message):
 
 
 async def send_instagram(message: types.Message):
-    await message.reply(f'Посмотреть работы в instagram:\nhttps://www.instagram.com/val_ensya/')
+    await message.reply(f'Посмотреть работы в instagram:', reply_markup=inline_button)
 
 
 async def price(message: types.Message):
