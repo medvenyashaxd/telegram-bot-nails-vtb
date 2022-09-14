@@ -98,12 +98,12 @@ async def delete_price(message: types.Message):
 
 
 def registration_handlers_admin(dp: Dispatcher):
-    dp.register_message_handler(loading_command, commands=['Загрузить'], state=None)
-    dp.register_message_handler(cancel_command, state="*", commands=['Отмена'])
+    dp.register_message_handler(loading_command, lambda message: 'Загрузить' in message.text, state=None)
+    dp.register_message_handler(cancel_command, lambda message: 'Отмена' in message.text, state='*')
     dp.register_message_handler(load_photo, content_types=['photo'], state=FSMAdmin.photo)
     dp.register_message_handler(load_name, state=FSMAdmin.name)
     dp.register_message_handler(load_description, state=FSMAdmin.description)
     dp.register_message_handler(load_price, state=FSMAdmin.price)
     dp.register_message_handler(command_change_price, commands=['admin'], is_chat_admin=True)
     dp.register_callback_query_handler(run_del_price, lambda x: x.data and x.data.startswith('del '))
-    dp.register_message_handler(delete_price, commands=['Удалить'])
+    dp.register_message_handler(delete_price, lambda message: 'Удалить' in message.text)
