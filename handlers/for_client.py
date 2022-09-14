@@ -8,7 +8,7 @@ async def command_start(message: types.Message):
     try:
         await bot_aiogram.send_message(message.from_user.id,
 
-'Здравствуй, {0.first_name}. Хочешь записаться на маникюр или педикюр? Чтобы узнать свободное время мастера,\
+'Здравствуй, {0.first_name}. Хочешь записаться на качественный маникюр или педикюр? Чтобы узнать свободное время мастера,\
  напиши в личные сообщения https://t.me/val_ensiya или позвони по номеру +375336483246'.format(message.from_user),
                                        reply_markup=client_button)
 
