@@ -23,3 +23,12 @@ async def sql_add_data(state):
 async def sql_read(message):
     for data in cursor.execute('SELECT * FROM price').fetchall():
         await bot_aiogram.send_photo(message.from_user.id, data[0], f'{data[1]}\nОписание: {data[2]}\nЦена  {data[-1]}')
+
+
+async def sql_read_for_del():
+    return cursor.execute('SELECT * FROM price').fetchall()
+
+
+async def sql_run_delete(data):
+    cursor.execute('DELETE FROM price WHERE name == ?', (data,))
+    base.commit()
