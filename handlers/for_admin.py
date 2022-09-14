@@ -32,7 +32,7 @@ async def loading_command(message: types.Message):
 
     else:
         await message.delete()
-        await bot_aiogram.send_message(message.from_user.id, 'Сначала нужно получить права администратора')
+        await bot_aiogram.send_message(message.from_user.id, 'Сначала нужно получить права администратора!')
 
 
 async def cancel_command(message: types.Message, state: FSMContext):
