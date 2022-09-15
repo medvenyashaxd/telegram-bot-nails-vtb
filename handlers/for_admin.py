@@ -6,7 +6,6 @@ from data_base.sqlite_db import sql_add_data, sql_read_for_del, sql_run_delete
 from data_for_the_bot import bot_aiogram
 from buttons.buttons_for_admin import buttons_admin
 
-
 ID = None
 
 
@@ -18,7 +17,6 @@ class FSMAdmin(StatesGroup):
 
 
 async def command_change_price(message: types.Message):
-
     global ID
     ID = message.from_user.id
     await bot_aiogram.send_message(message.from_user.id, 'Готов к указаниям.', reply_markup=buttons_admin)
@@ -67,13 +65,13 @@ async def load_description(message: types.Message, state: FSMContext):
         async with state.proxy() as data:
             data['description'] = message.text
             await FSMAdmin.next()
-            await message.reply('Введи цену:')
+            await message.reply('Введи цену: ')
 
 
 async def load_price(message: types.Message, state: FSMContext):
     if message.from_user.id == ID:
         async with state.proxy() as data:
-            data['price'] = (message.text + ' BYN')
+            data['price'] = message.text
 
         await bot_aiogram.send_message(message.from_user.id, 'Данные внесены')
 
@@ -90,10 +88,10 @@ async def delete_price(message: types.Message):
     if message.from_user.id == ID:
         read = await sql_read_for_del()
         for data in read:
-            await bot_aiogram.send_photo(message.from_user.id, data[0], f'{data[1]}\nОписание: {data[2]}\nЦена'
+            await bot_aiogram.send_photo(message.from_user.id, data[0], f'{data[1]}\n{data[2]}\nСтоимость работы '
                                                                         f'{data[-1]}')
 
-            await bot_aiogram.send_message(message.from_user.id, text='⬆', reply_markup=InlineKeyboardMarkup().\
+            await bot_aiogram.send_message(message.from_user.id, text='⬆', reply_markup=InlineKeyboardMarkup(). \
             add(InlineKeyboardButton(f'Удалить {data[1]}', callback_data=f'del {data[1]}')))
 
 
@@ -105,5 +103,9 @@ def registration_handlers_admin(dp: Dispatcher):
     dp.register_message_handler(load_description, state=FSMAdmin.description)
     dp.register_message_handler(load_price, state=FSMAdmin.price)
     dp.register_message_handler(command_change_price, commands=['admin'], is_chat_admin=True)
-    dp.register_callback_query_handler(run_del_price, lambda x: x.data and x.data.startswith('del '))
     dp.register_message_handler(delete_price, lambda message: 'Удалить' in message.text)
+
+
+def registration_callback_query_handler(dp: Dispatcher):
+    dp.register_callback_query_handler(run_del_price, lambda x: x.data and x.data.startswith('del '))
+

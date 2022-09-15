@@ -10,6 +10,7 @@ async def show_launch_notification(_):
 
 for_client.registration_handler_client(dp)
 for_admin.registration_handlers_admin(dp)
+for_admin.registration_callback_query_handler(dp)
 
 executor.start_polling(dp, skip_updates=True, on_startup=show_launch_notification)
 
