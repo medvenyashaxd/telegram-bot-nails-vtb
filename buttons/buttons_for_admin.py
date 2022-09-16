@@ -1,5 +1,7 @@
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
+# adding buttons for admin in admin mode
+
 button_load = KeyboardButton('Загрузить')
 button_delete = KeyboardButton('Удалить')
 button_cancel = KeyboardButton('Отмена')

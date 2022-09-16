@@ -4,6 +4,7 @@ from data_for_the_bot import bot_aiogram
 from data_base import sqlite_db
 
 
+# when starting the bot or when entering the start command, a message appears
 async def command_start(message: types.Message):
     try:
         await bot_aiogram.send_message(message.from_user.id,
@@ -18,16 +19,19 @@ async def command_start(message: types.Message):
         await message.delete()
 
 
+# when starting the bot or when entering the start command, a message appears
 async def send_location(message: types.Message):
     await message.reply('г. Витебск, ул. Калинина 18, салон красоты "Калинка"')
     await bot_aiogram.send_message(message.from_user.id, 'Посмотреть на карте:')
     await bot_aiogram.send_location(chat_id=message.from_user.id, latitude=55.186894, longitude=30.201958)
 
 
+# when starting the bot or when entering the start command, a message appears
 async def send_instagram(message: types.Message):
     await message.reply(f'Посмотреть работы в instagram:', reply_markup=inline_button_for_client)
 
 
+# when you click on the price, it reads data from the database and sends it to the user
 async def price(message: types.Message):
     await sqlite_db.sql_read(message)
 

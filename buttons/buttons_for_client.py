@@ -1,5 +1,6 @@
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 
+# adding buttons for users
 button_price = KeyboardButton('💶 Прайс')
 button_location = KeyboardButton('📍 Расположение')
 button_see_works = KeyboardButton('👀 Посмотреть работы')
