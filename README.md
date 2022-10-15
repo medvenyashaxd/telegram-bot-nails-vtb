@@ -1,4 +1,4 @@
-# telegram-bot-nails-vtb
+# Telegram bot nails vtb
 
 Python based bot with built-in libraries sqlite 3 database, state machine, third party library aiogram with connection to heroku server
 
